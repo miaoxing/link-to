@@ -2,11 +2,35 @@
 
 namespace MiaoxingTest\LinkTo\Service;
 
-use plugins\wechat\services\WechatAccount;
-
+/**
+ * LinkTo服务
+ */
 class LinkToTest extends \Miaoxing\Plugin\Test\BaseTestCase
 {
-    public function testGenerateOauth2UserInfoUrl()
+    /**
+     * 测试生成URL地址
+     *
+     * @dataProvider providerForGetUrl
+     */
+    public function testGetUrl($config, $url)
+    {
+        $this->assertEquals($url, wei()->linkTo->getUrl($config));
+    }
+
+    public function providerForGetUrl()
+    {
+        return [
+            [
+                [
+                    'type' => 'url',
+                    'value' => 'resources/new'
+                ],
+                '/resources/new'
+            ]
+        ];
+    }
+
+    /*public function testGenerateOauth2UserInfoUrl()
     {
         $account = wei()->wechatAccount->getCurrentAccount();
         $account->setData([
@@ -37,5 +61,5 @@ class LinkToTest extends \Miaoxing\Plugin\Test\BaseTestCase
         ]);
         $url = 'http://qq.com';
         $this->assertEquals($url, wei()->linkTo->generateOauth2BaseUrl('http://qq.com'));
-    }
+    }*/
 }
