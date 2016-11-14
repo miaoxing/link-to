@@ -1,0 +1,23 @@
+{
+  "name": "miaoxing/link-to",
+  "description": "Miaoxing LinkTo Plugin",
+  "keywords": [
+    "miaoxing", "link-to"
+  ],
+  "license": "MIT",
+  "require": {
+    "miaoxing/app": "dev-master@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Miaoxing\\LinkTo\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MiaoxingTest\\LinkTo\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
