@@ -17,7 +17,7 @@ class LinkTo extends \miaoxing\plugin\BaseService
     protected $defaults = [
         'type' => '',
         'value' => '',
-        'decorator' => ''
+        'decorator' => '',
     ];
 
     /**
@@ -44,6 +44,7 @@ class LinkTo extends \miaoxing\plugin\BaseService
         $method = 'generate' . ucfirst($link['type']);
         if (method_exists($this, $method)) {
             $url = $this->generateInternalUrl($link['url']);
+
             return $this->$method($url);
         }
 
@@ -178,6 +179,7 @@ class LinkTo extends \miaoxing\plugin\BaseService
                 throw new \Exception(sprintf('Method "%s" not found for linkTo service', $method));
             }
         }
+
         return $url;
     }
 
@@ -229,7 +231,7 @@ class LinkTo extends \miaoxing\plugin\BaseService
     protected function oauth2Url($url, $scope)
     {
         // todo 兼容不同的平台
-        if($this->app->getNamespace() == 'plst') {
+        if ($this->app->getNamespace() == 'plst') {
             $account = wei()->wechatCorpAccount->getCurrentAccount();
         } else {
             $account = wei()->wechatAccount->getCurrentAccount();
@@ -252,11 +254,12 @@ class LinkTo extends \miaoxing\plugin\BaseService
      */
     protected function orderBy(array $array, $key = 'sort', $type = SORT_DESC)
     {
-        $array2 = array();
+        $array2 = [];
         foreach ($array as $k => $v) {
             $array2[$k] = $v[$key];
         }
         array_multisort($array2, $type, $array);
+
         return $array;
     }
 
@@ -268,8 +271,9 @@ class LinkTo extends \miaoxing\plugin\BaseService
      */
     public function encode($data)
     {
-        $data = (array)$data + $this->defaults;
+        $data = (array) $data + $this->defaults;
         $data = array_intersect_key($data, $this->defaults);
+
         return json_encode($data, JSON_UNESCAPED_SLASHES);
     }
 
@@ -281,7 +285,8 @@ class LinkTo extends \miaoxing\plugin\BaseService
      */
     public function decode($data)
     {
-        $data = (array)json_decode($data, true);
+        $data = (array) json_decode($data, true);
+
         return $this->upgrade($data);
     }
 

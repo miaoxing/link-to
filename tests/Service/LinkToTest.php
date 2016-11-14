@@ -23,10 +23,10 @@ class LinkToTest extends \Miaoxing\Plugin\Test\BaseTestCase
             [
                 [
                     'type' => 'url',
-                    'value' => 'resources/new'
+                    'value' => 'resources/new',
                 ],
-                '/resources/new'
-            ]
+                '/resources/new',
+            ],
         ];
     }
 

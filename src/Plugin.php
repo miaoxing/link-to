@@ -30,19 +30,19 @@ class Plugin extends \miaoxing\plugin\BasePlugin
         $links[] = [
             'typeId' => 'browser',
             'name' => '后退',
-            'url' => 'javascript:window.history.back();'
+            'url' => 'javascript:window.history.back();',
         ];
 
         $links[] = [
             'typeId' => 'browser',
             'name' => '前进',
-            'url' => 'javascript:window.history.forward();'
+            'url' => 'javascript:window.history.forward();',
         ];
 
         $links[] = [
             'typeId' => 'browser',
             'name' => '刷新',
-            'url' => 'javascript:window.location.reload();'
+            'url' => 'javascript:window.location.reload();',
         ];
     }
 
