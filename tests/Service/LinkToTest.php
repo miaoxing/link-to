@@ -3,7 +3,7 @@
 namespace MiaoxingTest\LinkTo\Service;
 
 /**
- * LinkTo服务
+ * 链接选择器服务
  */
 class LinkToTest extends \Miaoxing\Plugin\Test\BaseTestCase
 {
