@@ -1,6 +1,9 @@
-define(['module', 'template'], function (module) {
+define(['module', 'template'], function (module, template) {
   var LinkTo = function (options) {
-    options && $.extend(this, options);
+    if (options) {
+      $.extend(this, options);
+    }
+
     this.initialize.apply(this, arguments);
   };
 
@@ -45,7 +48,7 @@ define(['module', 'template'], function (module) {
      * 要隐藏的类型
      */
     hide: {
-      //keyword: true
+      // keyword: true
     },
 
     /**
@@ -92,7 +95,7 @@ define(['module', 'template'], function (module) {
       return this.$el.find(selector);
     },
 
-    initialize: function (options) {
+    initialize: function () {
       // 如果未设置$el,认为不是通过插件方式初始化
       if (this.$el) {
         this.init();
@@ -103,7 +106,7 @@ define(['module', 'template'], function (module) {
      * 初始化选择器,用于快速调用
      */
     init: function (options) {
-      var self = this;
+      var that = this;
       $.extend(this, options);
 
       // 1. 升级老数据,兼容类型,地址不存在的情况
@@ -134,15 +137,15 @@ define(['module', 'template'], function (module) {
         $modal.find('.js-link-to-' + preType).hide();
         $modal.find('.js-link-to-' + (preType = $type.val())).show();
         $doc.trigger($.Event('linkToChangeType', {
-          $el: self.$el,
+          $el: that.$el,
           curType: preType,
-          value: self.data.value
+          value: that.data.value
         }));
       });
 
       // 4.3 点击确定按钮更新文案
       this.$('.js-link-to-confirm').click(function () {
-        self.confirmData();
+        that.confirmData();
       });
 
       this.initDecorator();
@@ -173,7 +176,9 @@ define(['module', 'template'], function (module) {
     confirmData: function () {
       var data = this.getData();
       this.updateLink(data);
-      this.update && this.update.call(this.$el, data);
+      if (this.update) {
+        this.update.call(this.$el, data);
+      }
     },
 
     /**
@@ -181,12 +186,12 @@ define(['module', 'template'], function (module) {
      */
     initDecorator: function () {
       // 如果选择了链接,显示链接的附加属性
-      var self = this;
+      var that = this;
       this.$type.change(function () {
-        if (self.isHttpType($(this).val())) {
-          self.$decorator.show();
+        if (that.isHttpType($(this).val())) {
+          that.$decorator.show();
         } else {
-          self.$decorator.hide();
+          that.$decorator.hide();
         }
       });
     },
@@ -215,22 +220,24 @@ define(['module', 'template'], function (module) {
       }
 
       // 1. 类型不存在,如老数据,插件关闭等情况,改为默认类型
-      if (typeof this.types[data.type] == 'undefined') {
+      if (typeof this.types[data.type] === 'undefined') {
         data.type = this.defaultType;
       }
 
       // 2. 如果是select类型,但是链接不存在,改为默认类型
       var type = this.types[data.type];
-      if (type.input != 'select') {
+      if (type.input !== 'select') {
         return data;
       }
 
       var found = false;
       $.each(type.links, function (key, link) {
-        if (link.url == data.value) {
+        if (link.url === data.value) {
           found = true;
           return false;
         }
+
+        return true;
       });
       if (found === false) {
         data.type = this.defaultType;
@@ -246,7 +253,7 @@ define(['module', 'template'], function (module) {
       var data = {};
       data.type = this.$type.val();
 
-      if (data.type == '') {
+      if (data.type === '') {
         // 返回空字符串,而不是空对象{},$.param才会正确生成链接
         return '';
       }
@@ -292,7 +299,7 @@ define(['module', 'template'], function (module) {
 
       // 3.1 input的链接
       if (this.isInputType(type)) {
-        if (typeof value != 'undefined') {
+        if (typeof value !== 'undefined') {
           names.push(value);
         }
         return names;
@@ -301,7 +308,7 @@ define(['module', 'template'], function (module) {
       // 3.2 select的链接并找到数据
       var links = this.types[type].links;
       for (var i in links) {
-        if (links[i].url == value) {
+        if (links[i].url === value) {
           names.push(links[i].name);
           return names;
         }
@@ -326,14 +333,14 @@ define(['module', 'template'], function (module) {
      * 判断链接类型的值是否为输入框
      */
     isInputType: function (type) {
-      return $.inArray(type, this.inputTypes) != -1;
+      return $.inArray(type, this.inputTypes) !== -1;
     },
 
     /**
      * 判断链接类型的链接是否为http链接,即可以被修饰器修饰
      */
     isHttpType: function (type) {
-      return type && $.inArray(type, this.nonHttpTypes) == -1;
+      return type && $.inArray(type, this.nonHttpTypes) === -1;
     },
 
     /**
@@ -357,10 +364,17 @@ define(['module', 'template'], function (module) {
     return this.each(function () {
       var $this = $(this);
       var data = $this.data('linkTo');
-      typeof options == 'object' && (options.$el = $this);
+      if (typeof options === 'object') {
+        options.$el = $this;
+      }
 
-      if (!data) $this.data('linkTo', (data = new LinkTo(options)));
-      if (typeof options == 'string') data[options].call(data);
+      if (!data) {
+        $this.data('linkTo', (data = new LinkTo(options)));
+      }
+
+      if (typeof options === 'string') {
+        data[options](data);
+      }
     });
   };
   $.fn.linkTo.Constructor = LinkTo;
@@ -368,5 +382,5 @@ define(['module', 'template'], function (module) {
   /**
    * 返回实例化,供快速调用
    */
-  return new LinkTo;
+  return new LinkTo();
 });
