@@ -215,7 +215,11 @@ define(['module', 'template'], function (module, template) {
      * 升级数据
      */
     upgradeData: function (data) {
-      if (!data || !data.type) {
+      if (!data) {
+        return {};
+      }
+
+      if (!data.type) {
         return data;
       }
 
