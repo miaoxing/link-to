@@ -150,9 +150,9 @@ class LinkTo extends \miaoxing\plugin\BaseService
         }
 
         // 如果没有设置decorator,才生成带微信登录态的内部地址
-        if (!$linkTo['decorator']) {
-            $url = $this->generateInternalUrl($url);
-        }
+//        if (!$linkTo['decorator']) {
+//            $url = $this->generateInternalUrl($url);
+//        }
 
         // 按需添加OAuth2.0验证
         $url = $this->decorateUrl($url, $linkTo['decorator']);
