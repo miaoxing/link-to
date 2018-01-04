@@ -7,7 +7,7 @@ namespace Miaoxing\LinkTo\Service;
  * @method string url($url = '', $argsOrParams = array(), $params = array())
  * @property \Wei\Request $request
  */
-class LinkTo extends \miaoxing\plugin\BaseService
+class LinkTo extends \Miaoxing\Plugin\BaseService
 {
     /**
      * 链接的默认数据
