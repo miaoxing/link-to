@@ -1,4 +1,4 @@
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require.config({
     config: {
