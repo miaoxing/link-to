@@ -271,6 +271,10 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
      */
     public function encode($data)
     {
+        if ($this->isEmpty($data)) {
+            return '{}';
+        }
+
         $data = (array) $data + $this->defaults;
         $data = array_intersect_key($data, $this->defaults);
 
@@ -288,6 +292,11 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
         $data = (array) json_decode($data, true);
 
         return $this->upgrade($data);
+    }
+
+    protected function isEmpty($data)
+    {
+        return !$data || !$data['type'];
     }
 
     /**
