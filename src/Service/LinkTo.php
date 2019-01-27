@@ -35,7 +35,7 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
         'links' => [],
     ];
 
-    public function __invoke(array $link)
+    public function __invoke($link)
     {
         if (!$link) {
             return '';
@@ -89,10 +89,10 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
     /**
      * 根据LinkTo配置,获取对应的URL地址
      *
-     * @param array $linkTo
+     * @param array|null $linkTo
      * @return string
      */
-    public function getUrl(array $linkTo)
+    public function getUrl($linkTo)
     {
         // 1. 升级数据
         $linkTo = $this->upgrade($linkTo);
@@ -115,10 +115,10 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
     /**
      * 根据LinkTo配置,获取完整的URL地址
      *
-     * @param array $linkTo
+     * @param array|null $linkTo
      * @return string
      */
-    public function getFullUrl(array $linkTo)
+    public function getFullUrl($linkTo)
     {
         $url = $this->getUrl($linkTo);
 
