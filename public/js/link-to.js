@@ -230,6 +230,10 @@ define(['module', 'template'], function (module, template) {
 
       // 2. 如果是select类型,但是链接不存在,改为默认类型
       var type = this.types[data.type];
+      if (typeof type === 'undefined') {
+        return data;
+      }
+
       if (type.input !== 'select') {
         return data;
       }
