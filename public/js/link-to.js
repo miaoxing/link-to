@@ -31,17 +31,11 @@ define(['module', 'template'], function (module, template) {
     $type: null,
 
     /**
-     * 修饰器下拉菜单元素
-     */
-    $decorator: null,
-
-    /**
      * 链接数据
      */
     data: {
       type: '', // 链接的类型,如网页,官网,用户
-      value: '', // 类型对应的值,如具体的URL地址,后退的JS代码
-      decorator: '' // 链接的附加修饰器,如附加微信OpenID授权
+      value: '' // 类型对应的值,如具体的URL地址,后退的JS代码
     },
 
     /**
@@ -86,11 +80,6 @@ define(['module', 'template'], function (module, template) {
      */
     types: [],
 
-    /**
-     * 修饰器数据,如微信Oauth2登录
-     */
-    decorators: [],
-
     $: function (selector) {
       return this.$el.find(selector);
     },
@@ -123,7 +112,6 @@ define(['module', 'template'], function (module, template) {
       // 4. 绑定事件
       this.$type = this.$('.js-link-to-type');
       this.$modal = this.$('.js-link-to-modal');
-      this.$decorator = this.$('.js-link-to-decorator');
       var $doc = $(document);
       var $type = this.$type;
       var $modal = this.$modal;
@@ -148,7 +136,6 @@ define(['module', 'template'], function (module, template) {
         that.confirmData();
       });
 
-      this.initDecorator();
       this.loadData(this.data);
     },
 
@@ -182,21 +169,6 @@ define(['module', 'template'], function (module, template) {
     },
 
     /**
-     * 初始化修饰器
-     */
-    initDecorator: function () {
-      // 如果选择了链接,显示链接的附加属性
-      var that = this;
-      this.$type.change(function () {
-        if (that.isHttpType($(this).val())) {
-          that.$decorator.show();
-        } else {
-          that.$decorator.hide();
-        }
-      });
-    },
-
-    /**
      * 加载数据到链接选择器中
      */
     loadData: function (data) {
@@ -204,7 +176,6 @@ define(['module', 'template'], function (module, template) {
         this.$type.val(data.type).trigger('change');
         this.$('.js-link-to-value').val(data.value);
         this.$('.js-link-to-input-' + data.type).val(data.value).trigger('change');
-        this.$('.js-link-to-input-decorator').val(data.decorator);
       } else {
         this.$type.find('option:first').prop('selected', true);
         this.$type.trigger('change');
@@ -266,7 +237,6 @@ define(['module', 'template'], function (module, template) {
         return '';
       }
 
-      data.decorator = this.$('.js-link-to-input-decorator').val();
       data.value = this.$('.js-link-to-input-' + data.type).val();
       return data;
     },
@@ -276,13 +246,6 @@ define(['module', 'template'], function (module, template) {
      */
     getText: function (data) {
       return this.getNames(data).join(' » ');
-    },
-
-    /**
-     * 根据修饰器获取修饰器的名称
-     */
-    getDecoratorName: function (decorator) {
-      return this.decorators[decorator].name;
     },
 
     /**
@@ -297,15 +260,10 @@ define(['module', 'template'], function (module, template) {
       var type = data.type;
       var value = data.value;
 
-      // 1. 修饰器
-      if (data.decorator && this.isHttpType(type)) {
-        names.push(this.getDecoratorName(data.decorator));
-      }
-
-      // 2. 类型
+      // 1. 类型
       names.push(this.types[type].name);
 
-      // 3.1 input的链接
+      // 2.1 input的链接
       if (this.isInputType(type)) {
         if (typeof value !== 'undefined') {
           names.push(value);
@@ -313,7 +271,7 @@ define(['module', 'template'], function (module, template) {
         return names;
       }
 
-      // 3.2 select的链接并找到数据
+      // 2.2 select的链接并找到数据
       var links = this.types[type].links;
       for (var i in links) {
         if (links[i].url === value) {
@@ -322,7 +280,7 @@ define(['module', 'template'], function (module, template) {
         }
       }
 
-      // 3.3 找不到对应的数据,通过事件获取
+      // 2.3 找不到对应的数据,通过事件获取
       var result = {
         name: null
       };
@@ -332,7 +290,7 @@ define(['module', 'template'], function (module, template) {
         return names;
       }
 
-      // 3.4 通过事件也取不到,直接附加原始数据
+      // 2.4 通过事件也取不到,直接附加原始数据
       names.push(value);
       return names;
     },

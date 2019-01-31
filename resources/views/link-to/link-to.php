@@ -58,23 +58,6 @@
           <% }) %>
           <?php $event->trigger('linkToRenderInput') ?>
           <input type="hidden" class="js-link-to-value" name="<%= name %>[value]">
-
-          <% if (!hide.decorator) { %>
-          <div class="js-link-to-decorator form-group display-none">
-            <label class="col-xs-3 control-label">
-              附加
-            </label>
-
-            <div class="col-xs-7">
-              <select class="js-link-to-input-decorator form-control" name="<%= name %>[decorator]">
-                <option value="">无</option>
-                <% $.each(decorators, function(id, decorator) { %>
-                <option value="<%= id %>"><%= decorator.name %></option>
-                <% }) %>
-              </select>
-            </div>
-          </div>
-          <% } %>
         </div>
         <div class="modal-footer">
           <button type="button" class="js-link-to-confirm btn btn-info" data-dismiss="modal">确定</button>
