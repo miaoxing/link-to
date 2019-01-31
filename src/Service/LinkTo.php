@@ -17,7 +17,6 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
     protected $defaults = [
         'type' => '',
         'value' => '',
-        'decorator' => '',
     ];
 
     /**
@@ -35,22 +34,6 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
         'links' => [],
     ];
 
-    public function __invoke($link)
-    {
-        if (!$link) {
-            return '';
-        }
-
-        $method = 'generate' . ucfirst($link['type']);
-        if (method_exists($this, $method)) {
-            $url = $this->generateInternalUrl($link['url']);
-
-            return $this->$method($url);
-        }
-
-        throw new \Exception(sprintf('Method "%s" not found for linkTo service', $link['type']));
-    }
-
     /**
      * 获取类型,链接和修饰器配置
      *
@@ -59,8 +42,8 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
     public function getConfig()
     {
         // 1. 通过插件获取链接数据
-        $links = $types = $decorators = [];
-        $this->event->trigger('linkToGetLinks', [&$links, &$types, &$decorators]);
+        $links = $types = [];
+        $this->event->trigger('linkToGetLinks', [&$links, &$types]);
 
         // 2. 将链接加到类型中
         foreach ($links as $link) {
@@ -82,7 +65,6 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
 
         return [
             'types' => $types,
-            'decorators' => $decorators,
         ];
     }
 
@@ -126,117 +108,7 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
             $url = wei()->request->getUrlFor($url);
         }
 
-        // 按需添加OAuth2.0验证
-        $url = $this->decorateUrl($url, $linkTo['decorator']);
-
         return $url;
-    }
-
-    /**
-     * 生成带微信登录的URL地址
-     *
-     * @param array $linkTo
-     * @return string
-     * @throws \Exception
-     */
-    public function getUrlWithDecorator(array $linkTo)
-    {
-        // 生成基本的URL
-        $url = $this->getUrl($linkTo);
-
-        // 如果不是已http开头,认为是内部地址,附加前面的http头,转换为完整的地址
-        if (!wei()->isStartsWith($url, 'http')) {
-            $url = $this->request->getUrlFor($url);
-        }
-
-        // 按需添加OAuth2.0验证
-        $url = $this->decorateUrl($url, $linkTo['decorator']);
-
-        return $url;
-    }
-
-    /**
-     * 根据修饰器,更新URL
-     *
-     * @param $url
-     * @param $decorator
-     * @return mixed
-     * @throws \Exception
-     */
-    protected function decorateUrl($url, $decorator)
-    {
-        // 设置了修饰器
-        if ($decorator) {
-            $method = 'generate' . ucfirst($decorator) . 'Url';
-            if (method_exists($this, $method)) {
-                $url = $this->$method($url);
-            } else {
-                throw new \Exception(sprintf('Method "%s" not found for linkTo service', $method));
-            }
-        }
-
-        return $url;
-    }
-
-    /**
-     * 生成带微信登录态的内部地址
-     *
-     * @param string $url
-     * @return string
-     */
-    public function generateInternalUrl($url)
-    {
-        // Step1 URL自动加上当前用户OpenID
-        $url .= parse_url($url, PHP_URL_QUERY) ? '&' : '?';
-        $url .= 'wechatOpenId=' . $this->wei->weChatApp->getFromUserName();
-
-        // Step2 通过安全URL服务对wechatOpenId字段进行签名
-        $url = $this->wei->safeUrl->generate($url, 'wechatOpenId');
-
-        return $url;
-    }
-
-    /**
-     * 生成微信OpenID授权网页地址
-     *
-     * @param string $url
-     * @return string
-     */
-    public function generateOauth2BaseUrl($url)
-    {
-        return $this->oauth2Url($url, 'snsapi_base');
-    }
-
-    /**
-     * 生成微信用户信息授权网页地址
-     *
-     * @param $url
-     * @return string
-     */
-    public function generateOauth2UserInfoUrl($url)
-    {
-        return $this->oauth2Url($url, 'snsapi_userinfo');
-    }
-
-    /**
-     * @param string $url
-     * @param string $scope
-     * @return string
-     */
-    protected function oauth2Url($url, $scope)
-    {
-        // todo 兼容不同的平台
-        if ($this->app->getNamespace() == 'plst') {
-            $account = wei()->wechatCorpAccount->getCurrentAccount();
-        } else {
-            $account = wei()->wechatAccount->getCurrentAccount();
-        }
-
-        if ($account->isVerifiedService()) {
-            return $account->getOauth2Url($url, $scope);
-        } else {
-            return $url;
-        }
     }
 
     /**
