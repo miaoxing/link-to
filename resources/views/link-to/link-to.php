@@ -18,11 +18,11 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label class="col-xs-3 control-label">
+            <label class="col-3 control-label">
               类型
             </label>
 
-            <div class="link-controls col-xs-7">
+            <div class="link-controls col-7">
               <select class="js-link-to-type form-control" name="<%= name %>[type]">
                 <option value="">无</option>
                 <% $.each(types, function (id, type) { %>
@@ -37,11 +37,11 @@
           <% $.each(types, function (id, type) { %>
           <% if (type.input == 'custom') { return } %>
           <div class="js-link-to-<%= type.id %> form-group display-none">
-            <label class="col-xs-3 control-label" for="link-to-type">
+            <label class="col-3 control-label" for="link-to-type">
               链接到
             </label>
 
-            <div class="col-xs-7">
+            <div class="col-7">
               <!-- select, input之外的类型不显示,由插件自己输出 -->
               <% if (type.input == 'select') { %>
               <select class="js-link-to-input-<%= type.id %> form-control">
