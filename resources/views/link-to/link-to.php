@@ -36,7 +36,7 @@
 
           <% $.each(types, function (id, type) { %>
           <% if (type.input == 'custom') { return } %>
-          <div class="js-link-to-<%= type.id %> form-group display-none">
+          <div class="js-link-to-<%= type.id %> form-group d-none">
             <label class="col-3 control-label" for="link-to-type">
               链接到
             </label>

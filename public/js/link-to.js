@@ -122,8 +122,8 @@ define(['module', 'template'], function (module, template) {
       // 4.2 更换类型时,显示对应的表单
       var preType = null;
       $type.change(function () {
-        $modal.find('.js-link-to-' + preType).hide();
-        $modal.find('.js-link-to-' + (preType = $type.val())).show();
+        $modal.find('.js-link-to-' + preType).addClass('d-none');
+        $modal.find('.js-link-to-' + (preType = $type.val())).removeClass('d-none');
         $doc.trigger($.Event('linkToChangeType', {
           $el: that.$el,
           curType: preType,
