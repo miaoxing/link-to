@@ -106,7 +106,6 @@ define(['module', 'template'], function (module, template) {
       this.updateLink(this.data);
 
       // 3. 渲染模板
-      template.helper('$', $);
       this.$el.append(template.render('linkToTpl', this));
 
       // 4. 绑定事件
