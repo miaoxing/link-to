@@ -1,4 +1,4 @@
-define(['module', plugins/app/libs/artTemplate/template.min], function (module, template) {
+define(['module', 'plugins/app/libs/artTemplate/template.min'], function (module, template) {
   var LinkTo = function (options) {
     if (options) {
       $.extend(this, options);
