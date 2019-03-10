@@ -60,7 +60,7 @@
           <input type="hidden" class="js-link-to-value" name="<%= name %>[value]">
         </div>
         <div class="modal-footer">
-          <button type="button" class="js-link-to-confirm btn btn-info" data-dismiss="modal">确定</button>
+          <button type="button" class="js-link-to-confirm btn btn-primary" data-dismiss="modal">确定</button>
         </div>
       </div>
     </div>
