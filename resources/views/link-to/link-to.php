@@ -2,7 +2,7 @@
 <script>
   require.config({
     config: {
-      linkTo: <?= json_encode($wei->linkTo->getConfig()) ?>
+      'plugins/link-to/js/link-to': <?= json_encode($wei->linkTo->getConfig()) ?>
     }
   });
 </script>
