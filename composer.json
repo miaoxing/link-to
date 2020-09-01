@@ -3,7 +3,8 @@
   "type": "miaoxing-plugin",
   "description": "Miaoxing LinkTo Plugin",
   "keywords": [
-    "miaoxing", "link-to"
+    "miaoxing",
+    "link-to"
   ],
   "license": "MIT",
   "require": {
