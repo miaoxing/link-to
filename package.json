@@ -4,5 +4,9 @@
   "private": true,
   "main": "index.js",
   "author": "twinh",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@mxjs/app": "^0.2.9",
+    "@mxjs/a-link-picker": "^0.1.0"
+  }
 }
