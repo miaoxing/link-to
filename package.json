@@ -1,12 +1,12 @@
 {
   "name": "@miaoxing/link-to",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "private": true,
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
   "dependencies": {
-    "@mxjs/app": "^0.2.9",
+    "@mxjs/app": "^0.3.0",
     "@mxjs/a-link-picker": "^0.1.0"
   }
 }

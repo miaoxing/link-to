@@ -1,3 +1,20 @@
+## [0.1.14](https://github.com/miaoxing/link-to/compare/v0.1.13...v0.1.14) (2021-04-27)
+
+
+### Features
+
+* 增加 `LinkPicker` 组件，通过事件获取链接选项 ([6a6f51b](https://github.com/miaoxing/link-to/commit/6a6f51b785819915c8d5e09d6fd2c3cc8a6471c9))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/app:** upgrade from `0.2.9` to `0.3.0`
+* **@mxjs/a-link-picker:** upgrade to `0.1.0`
+* **@miaoxing/app:** upgrade from `0.2.13` to `0.3.0`
+
 ## [0.1.13](https://github.com/miaoxing/link-to/compare/v0.1.12...v0.1.13) (2021-03-22)
 
 
