@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import {default as BaseLinkPicker} from '@mxjs/a-link-picker';
 import {event} from '@mxjs/app';
 
