@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
+  "workspaces": [
+    "plugins/*"
+  ],
   "dependencies": {
     "@mxjs/app": "^0.3.3",
     "@mxjs/a-link-picker": "^0.2.0"
