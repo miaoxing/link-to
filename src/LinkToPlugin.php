@@ -2,7 +2,7 @@
 
 namespace Miaoxing\LinkTo;
 
-class Plugin extends \Miaoxing\Plugin\BasePlugin
+class LinkToPlugin extends \Miaoxing\Plugin\BasePlugin
 {
     protected $name = '链接选择器';
 
