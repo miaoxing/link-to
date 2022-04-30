@@ -1,3 +1,18 @@
+## [0.1.24](https://github.com/miaoxing/link-to/compare/v0.1.23...v0.1.24) (2022-04-30)
+
+
+### Features
+
+* **u, link-to:** 支持手动填写链接地址 ([b621c1b](https://github.com/miaoxing/link-to/commit/b621c1b9052aaf83e3ec154a353174bf4763f4e5))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.6.2` to `0.6.3`
+
 ## [0.1.23](https://github.com/miaoxing/link-to/compare/v0.1.22...v0.1.23) (2022-03-31)
 
 
