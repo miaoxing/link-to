@@ -1,3 +1,16 @@
+## [0.1.25](https://github.com/miaoxing/link-to/compare/v0.1.24...v0.1.25) (2022-06-01)
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/app:** upgrade from `0.4.3` to `0.5.0`
+* **@mxjs/a-link-picker:** upgrade from `0.2.2` to `0.2.3`
+* **@miaoxing/app:** upgrade from `0.6.3` to `0.6.4`
+* **@miaoxing/dev:** upgrade from `8.1.0` to `8.1.1`
+
 ## [0.1.24](https://github.com/miaoxing/link-to/compare/v0.1.23...v0.1.24) (2022-04-30)
 
 
