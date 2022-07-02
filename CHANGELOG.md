@@ -1,3 +1,18 @@
+## [0.1.28](https://github.com/miaoxing/link-to/compare/v0.1.27...v0.1.28) (2022-07-02)
+
+
+### Bug Fixes
+
+* 解决 composer 2.2+ 默认不启用插件导致安装路径错误 ([5761844](https://github.com/miaoxing/link-to/commit/5761844057afd0eef1bdf9e45d290eb86cc55a34))
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.6.5` to `0.6.6`
+
 ## [0.1.27](https://github.com/miaoxing/link-to/compare/v0.1.26...v0.1.27) (2022-07-01)
 
 
