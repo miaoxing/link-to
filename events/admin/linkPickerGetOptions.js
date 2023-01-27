@@ -7,18 +7,18 @@ import {FormItem} from '@mxjs/a-form';
 
 const UrlPicker = ({pickerRef, linkPicker, value}) => {
   const formRef = useRef();
-  const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(true);
 
   // 每次都更新
   pickerRef && (pickerRef.current = {
     show: () => {
-      setVisible(true);
+      setOpen(true);
     },
   });
 
   return <Modal
     title="填写链接"
-    visible={visible}
+    open={open}
     width={600}
     bodyStyle={{
       padding: '1rem',
@@ -28,10 +28,10 @@ const UrlPicker = ({pickerRef, linkPicker, value}) => {
       if (url) {
         linkPicker.addValue({url});
       }
-      setVisible(false);
+      setOpen(false);
     }}
     onCancel={() => {
-      setVisible(false);
+      setOpen(false);
     }}
   >
     <Form ref={formRef} labelCol={{span: 6}} wrapperCol={{span: 14}}>
