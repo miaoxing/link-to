@@ -1,3 +1,14 @@
+## [0.1.35](https://github.com/miaoxing/link-to/compare/v0.1.34...v0.1.35) (2023-01-31)
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/a-link-picker:** upgrade from `1.0.2` to `1.1.0`
+* **@miaoxing/app:** upgrade from `0.6.12` to `0.6.13`
+
 ## [0.1.34](https://github.com/miaoxing/link-to/compare/v0.1.33...v0.1.34) (2023-01-01)
 
 
