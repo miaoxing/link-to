@@ -1,3 +1,13 @@
+## [0.1.43](https://github.com/miaoxing/link-to/compare/v0.1.42...v0.1.43) (2023-09-30)
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.7.6` to `0.7.7`
+
 ## [0.1.42](https://github.com/miaoxing/link-to/compare/v0.1.41...v0.1.42) (2023-09-02)
 
 
