@@ -53,7 +53,7 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
         // 3. 过滤空的类型
         foreach ($types as $key => $type) {
             $type += ['id' => $key] + $this->typeDefaults;
-            if ($type['input'] == 'select' && !$type['links']) {
+            if ('select' == $type['input'] && !$type['links']) {
                 unset($types[$key]);
             } else {
                 $types[$key] = $type;
@@ -119,7 +119,7 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
      * @param int $type
      * @return array
      */
-    protected function orderBy(array $array, $key = 'sort', $type = SORT_DESC)
+    protected function orderBy(array $array, $key = 'sort', $type = \SORT_DESC)
     {
         $array2 = [];
         foreach ($array as $k => $v) {
@@ -145,7 +145,7 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
         $data = (array) $data + $this->defaults;
         $data = array_intersect_key($data, $this->defaults);
 
-        return json_encode($data, JSON_UNESCAPED_SLASHES);
+        return json_encode($data, \JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -194,11 +194,11 @@ class LinkTo extends \Miaoxing\Plugin\BaseService
             return false;
         }
 
-        if ($url[0] == '/') {
+        if ('/' == $url[0]) {
             return true;
         }
 
-        if (parse_url($url, PHP_URL_SCHEME) != '') {
+        if ('' != parse_url($url, \PHP_URL_SCHEME)) {
             return true;
         }
 

@@ -11,6 +11,8 @@ class LinkToTest extends \Miaoxing\Plugin\Test\BaseTestCase
      * 测试生成URL地址
      *
      * @dataProvider providerForGetUrl
+     * @param mixed $config
+     * @param mixed $url
      */
     public function testGetUrl($config, $url)
     {
