@@ -1,6 +1,6 @@
 {
   "name": "@miaoxing/link-to",
-  "version": "0.1.51",
+  "version": "0.1.52",
   "private": true,
   "main": "index.js",
   "author": "twinh",
@@ -9,7 +9,7 @@
     "plugins/*"
   ],
   "dependencies": {
-    "@mxjs/app": "^0.6.6",
+    "@mxjs/app": "^0.7.0",
     "@mxjs/a-link-picker": "^1.4.1"
   },
   "jest": {
