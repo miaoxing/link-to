@@ -20,8 +20,10 @@ const UrlPicker = ({pickerRef, linkPicker, value}) => {
     title="填写链接"
     open={open}
     width={600}
-    bodyStyle={{
-      padding: '1rem',
+    styles={{
+      body: {
+        padding: '1rem',
+      }
     }}
     onOk={() => {
       const url = formRef.current.getFieldValue('_url');
