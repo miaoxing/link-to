@@ -1,3 +1,21 @@
+## [0.1.55](https://github.com/miaoxing/link-to/compare/v0.1.54...v0.1.55) (2024-07-31)
+
+
+### Features
+
+* 升级 antd `Modal` 的 `bodyStyle` 为 `styles` ([17f4b05](https://github.com/miaoxing/link-to/commit/17f4b050d6c45470344155210c352185351b9f3d))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/app:** upgrade from `0.8.0` to `0.8.1`
+* **@mxjs/a-link-picker:** upgrade from `1.4.1` to `1.4.2`
+* **@miaoxing/app:** upgrade from `0.10.1` to `0.10.2`
+* **@miaoxing/dev:** upgrade from `9.1.1` to `9.1.2`
+
 ## [0.1.54](https://github.com/miaoxing/link-to/compare/v0.1.53...v0.1.54) (2024-06-30)
 
 
