@@ -1,3 +1,22 @@
+## [0.1.57](https://github.com/miaoxing/link-to/compare/v0.1.56...v0.1.57) (2024-09-01)
+
+
+### Features
+
+* modal 样式优化 ([18b24fb](https://github.com/miaoxing/link-to/commit/18b24fb44d66c1c61d2ee4f0fc3680f8497a946e))
+* 插件增加 wei 命令行入口 ([ae25120](https://github.com/miaoxing/link-to/commit/ae251200439a59cde78cc4de3073e84d32e0f3bd))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/app:** upgrade from `0.8.2` to `0.8.3`
+* **@mxjs/a-link-picker:** upgrade from `1.4.3` to `1.5.0`
+* **@miaoxing/app:** upgrade from `0.10.3` to `0.10.4`
+* **@miaoxing/dev:** upgrade from `9.1.3` to `9.2.0`
+
 ## [0.1.56](https://github.com/miaoxing/link-to/compare/v0.1.55...v0.1.56) (2024-08-03)
 
 
